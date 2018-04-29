@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use \Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use \Psr\Log\LoggerInterface;
 
 class ArticleController extends AbstractController
 {
@@ -40,9 +41,10 @@ class ArticleController extends AbstractController
     /**
     * @Route("/news/{slug}/heart", name="article_toggle_heart", methodS={"POST"})
     */
-    public function toogleArticleHeart()
+    public function toogleArticleHeart($slug, LoggerInterface $logger)
     {
         // TODO - actually heart / unheart the article!
+        $logger->info('Article is beig harted');
         return new JsonResponse(['hearts' => rand(5, 100)]);
     }
 }
